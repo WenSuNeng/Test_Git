@@ -1,0 +1,4 @@
+def f(max):
+	f(x)
+def add(x,y,f):
+	return f(x) + f(y)
