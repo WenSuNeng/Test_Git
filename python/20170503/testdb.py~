@@ -1,0 +1,24 @@
+#coding = UTF-8
+import sqlite3
+conn = sqlite3.connect('test.db')
+cursor = conn.cursor()
+try:
+	cursor.execute('create table user (id varchar(20) primary key, name varchar(20))')
+		
+except:
+	print 'create table failed'
+for i in range(1,100):
+	v = (i,'zhang' + str(i))
+	insert = "insert into user (id, name) values (?, ?)"
+	cursor.execute(insert,v)
+#cursor.execute('select * from user where id=?', ('1',))
+cursor.execute("select count(*) from user where name like 'zhang%'")
+cursor.execute('create index index_user on user(id)')
+
+
+values = cursor.fetchall()
+print values
+
+cursor.close()
+conn.close()
+
